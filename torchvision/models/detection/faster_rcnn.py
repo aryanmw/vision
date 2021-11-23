@@ -294,7 +294,8 @@ class FastRCNNPredictor(nn.Module):
 
     def __init__(self, in_channels, num_classes):
         super().__init__()
-        self.cls_score = nn.Linear(in_channels, num_classes)
+        self.mid = nn.Linear(in_channels, 512)
+        self.cls_score = nn.Linear(512, num_classes)
         self.bbox_pred = nn.Linear(in_channels, num_classes * 4)
 
     def forward(self, x):
